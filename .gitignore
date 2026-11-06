@@ -1,0 +1,27 @@
+# ==========================================
+# Git Ignore: Laptop Vitals Pro
+# ==========================================
+
+# Temporary & Build Objects
+*.obj
+*.pdb
+*.tmp
+*.log
+
+# IDE & Editor Directories
+.vs/
+.vscode/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Windows System Files
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Local AI / Scratch Sessions
+.gemini/
+scratch/

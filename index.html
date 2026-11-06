@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Laptop Vitals Pro - Native Windows Telemetry & Diagnostics</title>
+  <meta name="description" content="A lightweight, zero-dependency, native Windows 11 Fluent hardware telemetry and system health utility. Single portable binary (~343 KB), pitch-black OLED theme.">
+  <meta property="og:title" content="Laptop Vitals Pro">
+  <meta property="og:description" content="Zero-dependency, native Windows 11 Fluent hardware telemetry and system health utility. Single portable binary (~343 KB).">
+  <meta property="og:image" content="assets/preview_01.png">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23181c24' stroke='%23272e3d' stroke-width='1.5'/%3E%3Cpath d='M7 16h5l3-7 4 14 3-7h3' fill='none' stroke='%233b82f6' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+
+  <style>
+    :root {
+      --bg: #0b0d11;
+      --surface: #12151b;
+      --surface-hover: #181c24;
+      --surface-subtle: #151821;
+      --line: #1c212b;
+      --line-strong: #272e3d;
+      --text: #e1e5eb;
+      --text-dim: #9aa2b0;
+      --text-muted: #6d7687;
+      --accent: #3b82f6;
+      --accent-glow: rgba(59, 130, 246, 0.25);
+      --accent-soft: rgba(59, 130, 246, 0.1);
+      --success: #10b981;
+      --cyan: #06b6d4;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    a { color: var(--accent); text-decoration: none; transition: color .2s; }
+    a:hover { color: #60a5fa; }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Navbar */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+      background: rgba(11, 13, 17, 0.85);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      font-size: 17px;
+      letter-spacing: -0.01em;
+      color: #fff;
+    }
+    .brand-logo {
+      width: 32px;
+      height: 32px;
+      background: var(--surface-hover);
+      border: 1px solid var(--line-strong);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 13.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all .2s ease;
+      border: 1px solid transparent;
+      text-decoration: none;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 4px 14px var(--accent-glow);
+    }
+    .btn-primary:hover {
+      background: #2563eb;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px var(--accent-glow);
+      color: #fff;
+    }
+    .btn-secondary {
+      background: var(--surface);
+      color: var(--text);
+      border-color: var(--line-strong);
+    }
+    .btn-secondary:hover {
+      background: var(--surface-hover);
+      border-color: #3f4a61;
+      color: #fff;
+    }
+    .btn-lg {
+      padding: 14px 28px;
+      font-size: 15px;
+      border-radius: 10px;
+    }
+
+    /* Badges */
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      background: var(--surface);
+      border: 1px solid var(--line-strong);
+      border-radius: 999px;
+      font-size: 12px;
+      color: var(--text-dim);
+      font-weight: 500;
+      margin-bottom: 20px;
+    }
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--success);
+      box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 80px 0 50px;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: clamp(34px, 5.5vw, 56px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 20px;
+      background: linear-gradient(180deg, #ffffff 30%, #a5b4fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p {
+      font-size: clamp(16px, 2vw, 19px);
+      color: var(--text-dim);
+      max-width: 740px;
+      margin: 0 auto 32px;
+      line-height: 1.6;
+    }
+    .hero-cta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+    }
+    .hero-meta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      font-size: 12.5px;
+      color: var(--text-muted);
+      flex-wrap: wrap;
+    }
+    .hero-meta span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Showcase Visuals */
+    .showcase {
+      margin-top: 40px;
+      position: relative;
+    }
+    .showcase-window {
+      background: var(--surface);
+      border: 1px solid var(--line-strong);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
+    }
+    .window-header {
+      background: #0e1117;
+      border-bottom: 1px solid var(--line);
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .window-dots {
+      display: flex;
+      gap: 6px;
+    }
+    .window-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #272e3d;
+    }
+    .window-tabs {
+      display: flex;
+      gap: 8px;
+    }
+    .tab-btn {
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--text-muted);
+      padding: 5px 12px;
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all .15s;
+    }
+    .tab-btn.active {
+      background: var(--surface-hover);
+      border-color: var(--line-strong);
+      color: var(--text);
+    }
+    .showcase-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: opacity .3s;
+    }
+
+    /* Features Grid */
+    .section-title {
+      text-align: center;
+      font-size: 30px;
+      font-weight: 750;
+      letter-spacing: -0.02em;
+      margin: 90px 0 16px;
+    }
+    .section-desc {
+      text-align: center;
+      color: var(--text-dim);
+      font-size: 15px;
+      max-width: 600px;
+      margin: 0 auto 48px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 24px;
+      transition: border-color .2s, transform .2s;
+    }
+    .card:hover {
+      border-color: var(--line-strong);
+      transform: translateY(-2px);
+    }
+    .card-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--surface-hover);
+      border: 1px solid var(--line-strong);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      color: var(--accent);
+    }
+    .card h3 {
+      font-size: 16px;
+      font-weight: 650;
+      margin-bottom: 8px;
+      color: #fff;
+    }
+    .card p {
+      font-size: 13.5px;
+      color: var(--text-dim);
+      line-height: 1.55;
+    }
+
+    /* Checksum verification section */
+    .verify-box {
+      margin-top: 60px;
+      background: var(--surface);
+      border: 1px solid var(--line-strong);
+      border-radius: 10px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .verify-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .hash-code {
+      background: #090b0e;
+      border: 1px solid var(--line);
+      padding: 12px 16px;
+      border-radius: 6px;
+      font-family: Consolas, Monaco, monospace;
+      font-size: 12.5px;
+      color: #38bdf8;
+      word-break: break-all;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .copy-btn {
+      background: var(--surface-hover);
+      border: 1px solid var(--line-strong);
+      color: var(--text);
+      padding: 6px 12px;
+      font-size: 11px;
+      font-weight: 600;
+      border-radius: 5px;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: all .15s;
+    }
+    .copy-btn:hover {
+      background: #252e3e;
+      color: #fff;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 100px;
+      border-top: 1px solid var(--line);
+      padding: 40px 0;
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    footer a { color: var(--text-dim); }
+    footer a:hover { color: #fff; }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="brand-logo">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+          </svg>
+        </div>
+        <span>Laptop Vitals Pro</span>
+      </div>
+      <div class="nav-actions">
+        <a href="https://github.com/rasteq/LaptopVitals" target="_blank" class="btn btn-secondary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+          GitHub
+        </a>
+        <a href="https://github.com/rasteq/LaptopVitals/releases/latest/download/LaptopVitals-v1.0.0.exe" class="btn btn-primary">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          Download .EXE
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="badge-pill">
+        <span class="badge-dot"></span>
+        <span>Version 1.0.0 Stable • Zero Runtimes Required</span>
+      </div>
+      <h1>Deep Hardware Telemetry.<br>Zero Bloat. Instant Native Speed.</h1>
+      <p>
+        A single portable 343 KB executable tailored for Windows laptops and workstations.
+        Deep battery degradation forensics, NVMe SMART health, Windows Event Log screen time analytics, and real-time polyline telemetry.
+      </p>
+
+      <div class="hero-cta">
+        <a href="https://github.com/rasteq/LaptopVitals/releases/latest/download/LaptopVitals-v1.0.0.exe" class="btn btn-primary btn-lg">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          Download LaptopVitals-v1.0.0.exe (~343 KB)
+        </a>
+        <a href="https://github.com/rasteq/LaptopVitals" target="_blank" class="btn btn-secondary btn-lg">
+          Explore Repository
+        </a>
+      </div>
+
+      <div class="hero-meta">
+        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Windows 10 & 11 x64</span>
+        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Pitch-Black OLED Theme</span>
+        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> 100% Offline & Private</span>
+        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> MIT License</span>
+      </div>
+
+      <!-- App Showcase Windows -->
+      <div class="showcase">
+        <div class="showcase-window">
+          <div class="window-header">
+            <div class="window-dots">
+              <span class="window-dot" style="background:#ef4444"></span>
+              <span class="window-dot" style="background:#f59e0b"></span>
+              <span class="window-dot" style="background:#10b981"></span>
+            </div>
+            <div class="window-tabs">
+              <button class="tab-btn active" onclick="switchPreview('assets/preview_01.png', this)">Hero Showcase</button>
+              <button class="tab-btn" onclick="switchPreview('assets/preview_02.png', this)">Native Dark UI</button>
+            </div>
+            <div style="font-size:11px;color:var(--text-muted);font-family:monospace;">LaptopVitals.exe</div>
+          </div>
+          <img id="preview-image" src="assets/preview_01.png" alt="Laptop Vitals Pro Preview" class="showcase-img">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Grid -->
+  <section class="container">
+    <h2 class="section-title">Engineered for Hardware Enthusiasts & Pros</h2>
+    <p class="section-desc">Every diagnostic module runs locally through Windows native Win32 APIs, WMI, and Event Logs with no external runtime dependencies.</p>
+
+    <div class="grid">
+      <div class="card">
+        <div class="card-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="6" width="18" height="12" rx="2"/><line x1="23" y1="13" x2="23" y2="11"/></svg>
+        </div>
+        <h3>Battery Health & Wear Forensics</h3>
+        <p>Inspect factory design capacity vs. full charge capacity in mWh, exact wear percentage, and hardware cycle counts with 24-hour charge/discharge history.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h3>Screen Time & Activity Logs</h3>
+        <p>Deep event log forensics analyzing Windows Sleep & Wake events (42, 107, 1, 41) to calculate precise daily active display time and session logs.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+        </div>
+        <h3>Storage SMART & Temperatures</h3>
+        <p>Real-time health status, NVMe/SATA operational temperature sensors, read/write error indicators, and volume capacity meters.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <h3>Real-Time Polyline Telemetry</h3>
+        <p>Live graphs tracking CPU usage, RAM allocation, Disk I/O, and Network throughput, plus active top memory consumers and startup items.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><circle cx="12" cy="20" r="1"/></svg>
+        </div>
+        <h3>Wi-Fi & Network Diagnostics</h3>
+        <p>Inspect Wi-Fi protocol (802.11ax/ac/n), band, channel, link speeds, live DNS latency ping, and an offline viewer for saved Wi-Fi security keys.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+        </div>
+        <h3>Safe Junk Cleaner</h3>
+        <p>Scans and purges Windows temp files, thumbnail caches, and Windows Update cache in one click to reclaim gigabytes of storage safely.</p>
+      </div>
+    </div>
+
+    <!-- Cryptographic Verification -->
+    <div class="verify-box">
+      <div class="verify-header">
+        <div>
+          <strong style="color:#fff;font-size:14px;">Binary Integrity Checksum (SHA-256)</strong>
+          <p style="font-size:12px;color:var(--text-muted);">Verify your download in Windows PowerShell with: <code>Get-FileHash LaptopVitals-v1.0.0.exe</code></p>
+        </div>
+        <button class="copy-btn" onclick="copyHash()">Copy SHA-256</button>
+      </div>
+      <div class="hash-code" id="hash-text">63B545B811CC743B3798DF54EC764339B9103B6DF963554B944113B6703046FD</div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p style="margin-bottom:8px;">
+        Designed & Built by <a href="https://github.com/rasteq" target="_blank"><strong>Shahariar Ahammed (@rasteq)</strong></a>
+      </p>
+      <p>
+        Released under the <a href="https://github.com/rasteq/LaptopVitals/blob/main/LICENSE" target="_blank">MIT License</a> •
+        <a href="https://github.com/rasteq/LaptopVitals" target="_blank">GitHub Repository</a> •
+        <a href="https://github.com/rasteq/LaptopVitals/releases" target="_blank">Releases</a>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    function switchPreview(src, btn) {
+      const img = document.getElementById('preview-image');
+      img.style.opacity = '0.3';
+      setTimeout(() => {
+        img.src = src;
+        img.style.opacity = '1';
+      }, 150);
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+
+    function copyHash() {
+      const hash = document.getElementById('hash-text').innerText.trim();
+      navigator.clipboard.writeText(hash).then(() => {
+        const btn = document.querySelector('.copy-btn');
+        btn.innerText = 'Copied!';
+        setTimeout(() => btn.innerText = 'Copy SHA-256', 2000);
+      });
+    }
+  </script>
+</body>
+</html>
