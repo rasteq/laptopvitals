@@ -13,10 +13,10 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/rasteq/LaptopVitals/releases/latest/download/LaptopVitals-v1.0.0.exe">
+  <a href="https://github.com/rasteq/laptopvitals/releases/latest/download/LaptopVitals-v1.0.0.exe">
     <img src="https://img.shields.io/badge/Download-LaptopVitals--v1.0.0.exe-2563eb?style=for-the-badge&logo=windows&logoColor=white" alt="Download Windows Portable">
   </a>
-  <a href="https://rasteq.github.io/LaptopVitals/">
+  <a href="https://rasteq.github.io/laptopvitals/">
     <img src="https://img.shields.io/badge/Live%20Showcase-rasteq.github.io-10b981?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Live Showcase">
   </a>
 </p>
@@ -42,7 +42,7 @@
 
 ## 🚀 Quick Start
 
-1. Download **[`LaptopVitals-v1.0.0.exe`](https://github.com/rasteq/LaptopVitals/releases/latest/download/LaptopVitals-v1.0.0.exe)**.
+1. Download **[`LaptopVitals-v1.0.0.exe`](https://github.com/rasteq/laptopvitals/releases/latest/download/LaptopVitals-v1.0.0.exe)**.
 2. Double-click to launch — **zero installation or runtimes required**.
 3. *(Optional)* Click **"Run as Administrator"** inside the app for low-level kernel, battery cycle inspection, and storage SMART sensors.
 
@@ -61,6 +61,6 @@ Get-FileHash LaptopVitals-v1.0.0.exe
 ## 👤 Author & License
 
 - **Created by:** [Shahariar Ahammed](https://github.com/rasteq) ([@rasteq](https://github.com/rasteq))
-- **Live Showcase:** [https://rasteq.github.io/LaptopVitals/](https://rasteq.github.io/LaptopVitals/)
-- **Repository:** [https://github.com/rasteq/LaptopVitals](https://github.com/rasteq/LaptopVitals)
+- **Live Showcase:** [https://rasteq.github.io/laptopvitals/](https://rasteq.github.io/laptopvitals/)
+- **Repository:** [https://github.com/rasteq/laptopvitals](https://github.com/rasteq/laptopvitals)
 - **License:** [MIT License](LICENSE)
