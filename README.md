@@ -5,7 +5,7 @@
 
 [![Live Showcase](https://img.shields.io/badge/LIVE_SHOWCASE-rasteq.github.io%2Flaptopvitals-ED2024?style=for-the-badge&logo=googlechrome&logoColor=white)](https://rasteq.github.io/laptopvitals/)
 [![GitHub Repo](https://img.shields.io/badge/REPO-laptopvitals-0ea5e9?style=for-the-badge&logo=github&logoColor=white)](https://github.com/rasteq/laptopvitals)
-[![Download](https://img.shields.io/badge/DOWNLOAD-v1.0.0_PORTABLE-2563eb?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/rasteq/laptopvitals/releases/latest/download/LaptopVitals-v1.0.0.exe)
+[![Download](https://img.shields.io/badge/DOWNLOAD-v1.1.0_PORTABLE-2563eb?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/rasteq/laptopvitals/releases/latest/download/LaptopVitals-v1.1.0.exe)
 [![License](https://img.shields.io/badge/LICENSE-MIT-10b981?style=for-the-badge)](LICENSE)
 [![Privacy](https://img.shields.io/badge/PRIVACY-100%25_OFFLINE-a855f7?style=for-the-badge)](https://rasteq.github.io/laptopvitals/)
 
@@ -15,7 +15,7 @@
 
 <br/>
 
-[**Launch Web Showcase**](https://rasteq.github.io/laptopvitals/) &nbsp;•&nbsp; [**Download Portable Binary (.exe)**](https://github.com/rasteq/laptopvitals/releases/latest/download/LaptopVitals-v1.0.0.exe)
+[**Launch Web Showcase**](https://rasteq.github.io/laptopvitals/) &nbsp;•&nbsp; [**Download Portable Binary (.exe)**](https://github.com/rasteq/laptopvitals/releases/latest/download/LaptopVitals-v1.1.0.exe)
 
 <br/>
 
@@ -31,12 +31,13 @@
 
 **Laptop Vitals Pro** is an ultra-fast, zero-bloat system health and hardware diagnostics tool engineered specifically for Windows laptops and workstations.
 
-Packaging real-time hardware introspection, event-log-derived screen time analytics, battery degradation forensics, NVMe SMART telemetry, Wi-Fi security audits, and junk cleaning into a single ~343 KB portable binary, Laptop Vitals Pro runs instantly on vanilla Windows without requiring any runtimes, installers, or third-party packages.
+Packaging real-time hardware introspection, event-log-derived screen time analytics, battery degradation forensics, NVMe SMART telemetry, Wi-Fi security audits, installed programs and security risk detection, and junk cleaning into a single ~373 KB portable binary, Laptop Vitals Pro runs instantly on vanilla Windows without requiring any runtimes, installers, or third-party packages.
 
 <br/>
 
 ### Key Capabilities
 
+- **Installed Apps & Security:** Audit all desktop apps, Store packages, hidden system components, and risk indicators.
 - **Battery Forensics:** Wear level, design vs. full capacity, cycle count, and 24h history.
 - **Screen Time:** Display-on hours derived from Windows Kernel sleep/wake event logs.
 - **Storage SMART:** NVMe & SATA operational health, real-time temps, and volume meters.
@@ -50,7 +51,7 @@ Packaging real-time hardware introspection, event-log-derived screen time analyt
 
 ### Quick Start
 
-1. Download **`LaptopVitals-v1.0.0.exe`** from the latest release or from the **`release/`** folder.
+1. Download **`LaptopVitals-v1.1.0.exe`** from the latest release or from the **`release/`** folder.
 2. Double-click to launch (zero installation or runtime dependencies required).
 3. *(Optional)* Click **"Run as Administrator"** for low-level kernel, battery cycle inspection, and storage SMART sensors.
 
@@ -61,8 +62,8 @@ Packaging real-time hardware introspection, event-log-derived screen time analyt
 Verify binary integrity in Windows PowerShell:
 
 ```powershell
-Get-FileHash release\LaptopVitals-v1.0.0.exe
-# SHA-256: 63B545B811CC743B3798DF54EC764339B9103B6DF963554B944113B6703046FD
+Get-FileHash release\LaptopVitals-v1.1.0.exe
+# SHA-256: 2E187467202AA75AA84940913E8D4A073C6BFEB51AA6E7B43B6506DC024B1CDE
 ```
 
 <br/>
