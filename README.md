@@ -42,14 +42,14 @@
 
 ## 🚀 Quick Start
 
-1. Download **[`LaptopVitals-v1.0.0.exe`](https://github.com/rasteq/laptopvitals/releases/latest/download/LaptopVitals-v1.0.0.exe)**.
+1. Download **[`LaptopVitals-v1.0.0.exe`](https://github.com/rasteq/laptopvitals/releases/latest/download/LaptopVitals-v1.0.0.exe)** or get it directly from the [`release/`](release/) folder.
 2. Double-click to launch — **zero installation or runtimes required**.
 3. *(Optional)* Click **"Run as Administrator"** inside the app for low-level kernel, battery cycle inspection, and storage SMART sensors.
 
 ### 🔒 File Verification (SHA-256)
 
 ```powershell
-Get-FileHash LaptopVitals-v1.0.0.exe
+Get-FileHash release\LaptopVitals-v1.0.0.exe
 # SHA-256: 63B545B811CC743B3798DF54EC764339B9103B6DF963554B944113B6703046FD
 ```
 
