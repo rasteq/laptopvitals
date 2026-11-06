@@ -37,14 +37,14 @@ Packaging real-time hardware introspection, event-log-derived screen time analyt
 
 ### Key Capabilities
 
-- **Battery Health & Wear Forensics:** Inspect factory design capacity vs. full charge capacity in mWh, exact wear percentage, real hardware cycle counts, and 24-hour charge/discharge history.
-- **Screen Time Analytics:** Accurate active display time and continuous session breakdowns derived directly from Windows Kernel sleep/wake event logs (Events 42, 107, 1, 41).
-- **Storage SMART & Temperatures:** Real-time health status, NVMe and SATA SSD operational temperatures, read/write reliability indicators, and partition volume meters.
-- **Real-Time Performance Graphs:** Low-overhead live SVG polyline graphs tracking CPU, RAM, Disk I/O, and Network throughput, along with active memory consumers and startup items.
-- **Network & Wi-Fi Audits:** Radio protocols (802.11ax/ac/n), band, channel, link speeds, round-trip DNS ping latency test, and a secure offline viewer for saved Wi-Fi keys.
-- **Security & Kernel Forensics:** Real-time Windows Defender status, Secure Boot, TPM 2.0 readiness, and 30-day BSOD BugCheck crash logs.
-- **Safe Storage Cleaner:** One-click scanning and purging of Windows temporary directories, thumbnail caches, and Windows Update cache to safely reclaim disk space.
-- **Executive Diagnostic Certificate:** Generates a sanitized, one-page offline verification report saved directly to the Desktop.
+- **Battery Forensics:** Wear level, design vs. full capacity, cycle count, and 24h history.
+- **Screen Time:** Display-on hours derived from Windows Kernel sleep/wake event logs.
+- **Storage SMART:** NVMe & SATA operational health, real-time temps, and volume meters.
+- **Live Telemetry:** Real-time SVG polyline graphs for CPU, RAM, Disk, and Network.
+- **Network & Wi-Fi:** Radio specs, link speeds, DNS latency ping, and saved Wi-Fi key viewer.
+- **Security Enclave:** Windows Defender, Secure Boot, TPM 2.0, and 30-day BSOD crash logs.
+- **Junk Cleaner:** One-click safe cleanup of Windows temp files and system caches.
+- **Diagnostic Export:** 1-page sanitized hardware verification report to Desktop.
 
 <br/>
 
