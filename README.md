@@ -5,7 +5,7 @@
 
 [![Live Showcase](https://img.shields.io/badge/LIVE_SHOWCASE-rasteq.github.io%2Flaptopvitals-ED2024?style=for-the-badge&logo=googlechrome&logoColor=white)](https://rasteq.github.io/laptopvitals/)
 [![GitHub Repo](https://img.shields.io/badge/REPO-laptopvitals-0ea5e9?style=for-the-badge&logo=github&logoColor=white)](https://github.com/rasteq/laptopvitals)
-[![Download](https://img.shields.io/badge/DOWNLOAD-v1.2.0_PORTABLE-2563eb?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/rasteq/laptopvitals/releases/latest/download/LaptopVitals-v1.2.0.exe)
+[![Download](https://img.shields.io/badge/DOWNLOAD-v1.3.0_PORTABLE-2563eb?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/rasteq/laptopvitals/releases/latest/download/LaptopVitals-v1.3.0.exe)
 [![License](https://img.shields.io/badge/LICENSE-MIT-10b981?style=for-the-badge)](LICENSE)
 [![Privacy](https://img.shields.io/badge/PRIVACY-100%25_OFFLINE-a855f7?style=for-the-badge)](https://rasteq.github.io/laptopvitals/)
 
@@ -15,7 +15,7 @@
 
 <br/>
 
-[**Launch Web Showcase**](https://rasteq.github.io/laptopvitals/) &nbsp;•&nbsp; [**Download Portable Binary (.exe)**](https://github.com/rasteq/laptopvitals/releases/latest/download/LaptopVitals-v1.2.0.exe)
+[**Launch Web Showcase**](https://rasteq.github.io/laptopvitals/) &nbsp;•&nbsp; [**Download Portable Binary (.exe)**](https://github.com/rasteq/laptopvitals/releases/latest/download/LaptopVitals-v1.3.0.exe)
 
 <br/>
 
@@ -31,13 +31,13 @@
 
 **Laptop Vitals Pro** is an ultra-fast, zero-bloat system health and hardware diagnostics tool engineered specifically for Windows laptops and workstations.
 
-Packaging real-time hardware introspection, event-log-derived screen time analytics, battery degradation forensics, NVMe SMART telemetry, Wi-Fi security audits, installed programs and security risk detection, full keyboard & trackpad hardware testing, and junk cleaning into a single ~401 KB portable binary, Laptop Vitals Pro runs instantly on vanilla Windows without requiring any runtimes, installers, or third-party packages.
+Packaging real-time hardware introspection, event-log-derived screen time analytics, battery degradation forensics, NVMe SMART telemetry, Wi-Fi security audits, installed programs and security risk detection, full responsive 104-key keyboard & 50/50 mouse and trackpad hardware testing, and junk cleaning into a single ~401 KB portable binary, Laptop Vitals Pro runs instantly on vanilla Windows without requiring any runtimes, installers, or third-party packages.
 
 <br/>
 
 ### Key Capabilities
 
-- **Keyboard & Trackpad Audit:** Full 103-key visual hardware tester, mouse buttons, scroll wheel meter, and interactive touch tracking surface.
+- **Keyboard, Mouse & Trackpad Audit Lab:** Responsive 104-key ANSI layout with container queries, hardware Caps/Num LEDs, interactive 50% SVG mouse tester (L/M/R/Side buttons, double-click & wheel counters), and 50% multi-touch gesture trackpad canvas.
 - **Installed Apps & Security:** Audit all desktop apps, Store packages, hidden system components, and risk indicators.
 - **Battery Forensics:** Wear level, design vs. full capacity, cycle count, and 24h history.
 - **Screen Time:** Display-on hours derived from Windows Kernel sleep/wake event logs.
@@ -52,7 +52,7 @@ Packaging real-time hardware introspection, event-log-derived screen time analyt
 
 ### Quick Start
 
-1. Download **`LaptopVitals-v1.2.0.exe`** from the latest release or from the **`release/`** folder.
+1. Download **`LaptopVitals-v1.3.0.exe`** from the latest release or from the **`release/`** folder.
 2. Double-click to launch (zero installation or runtime dependencies required).
 3. *(Optional)* Click **"Run as Administrator"** for low-level kernel, battery cycle inspection, and storage SMART sensors.
 
@@ -63,8 +63,8 @@ Packaging real-time hardware introspection, event-log-derived screen time analyt
 Verify binary integrity in Windows PowerShell:
 
 ```powershell
-Get-FileHash release\LaptopVitals-v1.2.0.exe
-# SHA-256: 7A4CD4DF215F82660C23A20FA843DA0C2E262318767BF0B49CD57536C69A5C45
+Get-FileHash release\LaptopVitals-v1.3.0.exe
+# SHA-256: 2C6C5F4E4FC247AC864DAC0B76CD6E79A86B70087E48E3228F12C748953C08EA
 ```
 
 <br/>
