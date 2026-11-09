@@ -5,7 +5,7 @@
 
 [![Live Showcase](https://img.shields.io/badge/LIVE_SHOWCASE-rasteq.github.io%2Flaptopvitals-ED2024?style=for-the-badge&logo=googlechrome&logoColor=white)](https://rasteq.github.io/laptopvitals/)
 [![GitHub Repo](https://img.shields.io/badge/REPO-laptopvitals-0ea5e9?style=for-the-badge&logo=github&logoColor=white)](https://github.com/rasteq/laptopvitals)
-[![Download](https://img.shields.io/badge/DOWNLOAD-v1.3.0_PORTABLE-2563eb?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/rasteq/laptopvitals/releases/latest/download/LaptopVitals-v1.3.0.exe)
+[![Download](https://img.shields.io/badge/DOWNLOAD-v1.4.0_PORTABLE-2563eb?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/rasteq/laptopvitals/releases/latest/download/LaptopVitals-v1.4.0.exe)
 [![License](https://img.shields.io/badge/LICENSE-MIT-10b981?style=for-the-badge)](LICENSE)
 [![Privacy](https://img.shields.io/badge/PRIVACY-100%25_OFFLINE-a855f7?style=for-the-badge)](https://rasteq.github.io/laptopvitals/)
 
@@ -15,7 +15,7 @@
 
 <br/>
 
-[**Launch Web Showcase**](https://rasteq.github.io/laptopvitals/) &nbsp;•&nbsp; [**Download Portable Binary (.exe)**](https://github.com/rasteq/laptopvitals/releases/latest/download/LaptopVitals-v1.3.0.exe)
+[**Launch Web Showcase**](https://rasteq.github.io/laptopvitals/) &nbsp;•&nbsp; [**Download Portable Binary (.exe)**](https://github.com/rasteq/laptopvitals/releases/latest/download/LaptopVitals-v1.4.0.exe)
 
 <br/>
 
@@ -44,6 +44,7 @@ Packaging real-time hardware introspection, event-log-derived screen time analyt
 - **Storage SMART:** NVMe & SATA operational health, real-time temps, and volume meters.
 - **Live Telemetry:** Real-time SVG polyline graphs for CPU, RAM, Disk, and Network.
 - **Network & Wi-Fi:** Radio specs, link speeds, DNS latency ping, and saved Wi-Fi key viewer.
+- **Data Usage & Bandwidth Telemetry:** Windows-native 30-day Wi-Fi & adapter telemetry with today, 7-day, and 30-day interactive SVG bar charts, day-by-day download/upload accounting, and zero disk bloat.
 - **Security Enclave:** Windows Defender, Secure Boot, TPM 2.0, and 30-day BSOD crash logs.
 - **Junk Cleaner:** One-click safe cleanup of Windows temp files and system caches.
 - **Diagnostic Export:** 1-page sanitized hardware verification report to Desktop.
@@ -52,7 +53,7 @@ Packaging real-time hardware introspection, event-log-derived screen time analyt
 
 ### Quick Start
 
-1. Download **`LaptopVitals-v1.3.0.exe`** from the latest release or from the **`release/`** folder.
+1. Download **`LaptopVitals-v1.4.0.exe`** from the latest release or from the **`release/`** folder.
 2. Double-click to launch (zero installation or runtime dependencies required).
 3. *(Optional)* Click **"Run as Administrator"** for low-level kernel, battery cycle inspection, and storage SMART sensors.
 
@@ -63,8 +64,8 @@ Packaging real-time hardware introspection, event-log-derived screen time analyt
 Verify binary integrity in Windows PowerShell:
 
 ```powershell
-Get-FileHash release\LaptopVitals-v1.3.0.exe
-# SHA-256: 27AA5D8ADF5AE5D7971C7825C6F2A2E1B41A1FB9F1C6DB2B52E8FCD52C2A0FF5
+Get-FileHash release\LaptopVitals-v1.4.0.exe
+# SHA-256: FFA3983F3B70D97ED94EAC1342B6FF3709EB0FADD2C81193CB51F4DC29EF2E55
 ```
 
 <br/>
